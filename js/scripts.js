@@ -81,78 +81,92 @@ var getCard = function() {
 // THE GAME
 // - - - - - - - - - - - - - - - - - 
 // 1. Place bet (function)
-var $message = $('#message');
-var makeBet = function() {
+
+var makeBet = function($message, $start, $input, $reset, $submit) {
   $message.html('Welcome! How much money would you like to bet?');
+  $start.hide();
+  $input.show();
+  $reset.show();
+  $submit.show();
 };
 
-var $message = $('#message');
-var $bankrollmessage = $('#bankrollmessage');
-var $submit = $('#submit');
-var $input = $('input');
-var updateBankroll = function() {
-  $message.html('');
+var startGame = function($bankroll, $bankrollmessage, $message, $input, $submit) {
   var $bankroll = $input.val();
   $bankrollmessage.html('Your bankroll: $' + $bankroll);
-  $submit.hide();
+  $message.html('Press enter to deal cards.');
   $input.hide();
-  dealToPlayer();
+  $submit.hide();
 };
 
-var checkForAce = function(card1, card2) {
-  // var cardSum = parseInt(card1.value) + parseInt(card2.value);
-  // if (card1.name === 'Ace' || card2.name === 'Ace') {
-  //   if (cardSum < 21 && cardSum <= 10) {
-  //     return (cardSum + 10); // choosing 11 as value for Ace
-  //   } else if (cardSum > 21) {
-  //     return cardSum;
-  //   } else if (cardSum === 21) {
-  //     return cardSum;
-  //   }
-  // }
+var checkPlayerAce = function(playerHand, $displayTotal) {
+  for (var i = 0; i < playerHand.length; i++) {
+    if (playerHand[i][0].name === 'Ace') {
+      if (playerTotal < 21 && playerTotal <= 10) {
+        playerTotal += 10 // changing value of Ace from 1 to 11
+        $displayTotal.html(playerTotal);
+        console.log('ACE!');
+      } 
+      return playerTotal;
+    }
+  }
 };
 
 // 2. 2 cards randomly dealt to player
-var $playerhand = $('#playerhand');
-var dealToPlayer = function() {
+var dealToPlayer = function($message, $message2, $hit, $stay, $playerCard, $dealerCard, $displayTotal) {
+  $message.html('Your cards below: (click hit or stay)');
+  $message2.html('Dealer\'s cards:');
+  $hit.show();
+  $stay.show();
   playerHand.push(getCard());
   playerHand.push(getCard());
-  playerTotal = parseInt(playerHand[0][0].value) + parseInt(playerHand[1][0].value);
   console.log(playerHand);
+  playerTotal = parseInt(playerHand[0][0].value) + parseInt(playerHand[1][0].value);
+  $displayTotal.html(playerTotal);
   console.log(playerTotal);
-  $playerhand.show().html('Card 1: ' + playerHand[0][0].name + " " +playerHand[0][0].suit + ' Card 2: ' + playerHand[1][0].name + " " + playerHand[1][0].suit);
-  // checkForAce(playerCard1, playerCard2);
-  // console.log(playerTotal);
-  // console.log(playerHand);
-  dealToDealer();
+  $playerCard.show().html(playerHand[0][0].name + ' ' + playerHand[0][0].suit + ' ' + playerHand[1][0].name + ' ' + playerHand[1][0].suit);
+  checkPlayerAce(playerHand, $displayTotal);
+  dealToDealer($dealerCard);
+};
+
+var checkDealerAce = function(dealerHand) {
+  for (var i = 0; i < playerHand.length; i++) {
+    if (dealerHand[i][0].name === 'Ace') {
+      if (dealerTotal < 21 && dealerTotal <= 10) {
+        dealerTotal += 10 // changing value of Ace from 1 to 11
+        console.log('ACE!');
+      } 
+      return dealerTotal;
+    }
+  }
 };
 
 // 3. 2 cards randomly dealt to dealer (1 card is revealed)
-var dealToDealer = function() {
-  // dealerHand.push(getCard());
-  // dealerHand.push(getCard());
-  // var dealerCard1 = parseInt(dealerHand[0].value);
-  // var dealerCard2 = parseInt(dealerHand[1].value);
-  // var dealerTotal = dealerCard1 + dealerCard2;
-  // checkForAce(dealerCard1, dealerCard2);
-  // console.log(dealerTotal);
-  // console.log(dealerHand);
-  // hitOrStay();
+var dealToDealer = function($dealerCard) {
+  dealerHand.push(getCard());
+  dealerHand.push(getCard());
+  console.log(dealerHand);
+  dealerTotal = parseInt(dealerHand[0][0].value) + parseInt(dealerHand[1][0].value);
+  console.log(dealerTotal);
+  $dealerCard.show().html(dealerHand[0][0].name + ' ' + dealerHand[0][0].suit + ' ' + dealerHand[1][0].name + ' ' + dealerHand[1][0].suit);
+  checkDealerAce(dealerHand);
+  checkDealersHand();
 };
 
 // 4. Hit or stay? (function)
-var hitOrStay = function() {
-  // if (playerTotal < 21) {
-  //   $message.html('Do you want to hit or stay?');
-  //   playerTotal += playerHand.push(getCard());
-  // } else {
-  //   checkDealersHand();
-  // }
+var hit = function() {
+  playerHand.push(getCard());
+};
+
+var stay = function() {
+  checkDealersHand();
 };
 
 // 7. Dealer's turn: if less than 17, get another card
 var checkDealersHand = function() {
-
+  while (dealerTotal < 17) {
+    dealerHand.push(getCard());
+  }
+  return dealerHand;
 };
 
 // 8. Determine winner (function)
@@ -169,46 +183,39 @@ var determineWinner = function() {
 // WINDOW.ONLOAD
 // - - - - - - - - - - - - - - - - - 
 $(function() {
-// 0. start.onclick
-// 0a. Divs representing playerHand, playerBankroll, and dealerHand will appear
-// 0b. Hide start button
-// 0c. Show reset button
-// 0d. Show input
-// 0e. Show submit button
   var $start = $('#start').show();
   var $input = $('input').hide();
   var $reset = $('#reset');
   var $submit = $('#submit');
-  var $input = $('input');
+  var $message = $('#message');
   $start.click(function(event) {
-    $start.hide();
-    $start.hide();
-    $reset.show();
-    $submit.show();
-    $input.show();
-    makeBet();
+    makeBet($message, $start, $input, $reset, $submit);
   });
 
-  var $submit = $('#submit');
   var $bankroll = $('#bankroll');
+  var $bankrollmessage = $('#bankrollmessage');
   $submit.click(function(event) {
-    updateBankroll();
+    startGame($bankroll, $bankrollmessage, $message, $input, $submit);
   });
 
+  var $message2 = $('#message2');
   var $hit = $('#hit');
-  $hit.click(function(event) {
-    hitOrStay();
-  });
-
   var $stay = $('#stay');
-  $stay.click(function(event) {
-    hitOrStay();
+  var $playerCard = $('#playerCard');
+  var $dealerCard = $('#dealerCard');
+  var $displayTotal = $('#displayTotal');
+  $(document).keypress(function(event) {
+    if (event.keyCode == 13) {
+      dealToPlayer($message, $message2, $hit, $stay, $playerCard, $dealerCard, $displayTotal);
+    }
+  });
+  
+  $hit.click(function(event) {
+    hit();
   });
 
-
-// 1. Hit.onclick
-// 1a. Pop 
-// 2. Stay.onclick
-// 2a. 
+  $stay.click(function(event) {
+    stay();
+  });
 
 });

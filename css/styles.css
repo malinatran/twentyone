@@ -23,16 +23,8 @@ h1 {
 
 }
 
-#message {
-
-}
-
-#playerhand {
-  border: 1px solid black;
-  border-radius: 25px;
-  display: none;
-  height: 400px;
-  width: 250px;
+#message, #displayTotal, #message2 {
+  color: black;
 }
 
 #input {
@@ -41,4 +33,13 @@ h1 {
 
 #submit {
   display: none;
+}
+
+#playerCard, #dealerCard {
+  border: 1px solid black;
+  border-radius: 25px;
+  display: none;
+  height: 200px;
+  padding: 10px;
+  width: 200px;
 }
