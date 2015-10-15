@@ -1,1 +1,0 @@
-# malinatran.github.io
