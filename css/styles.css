@@ -1,0 +1,44 @@
+h1 {
+/*  font-family: 'Rouge Script', cursive;
+  font-size: 150px;*/
+}
+
+#start {
+  
+}
+
+#reset {
+  display: none;
+}
+
+#hit {
+  display: none;
+}
+
+#stay {
+  display: none;
+}
+
+#bankrollmessage {
+
+}
+
+#message {
+
+}
+
+#playerhand {
+  border: 1px solid black;
+  border-radius: 25px;
+  display: none;
+  height: 400px;
+  width: 250px;
+}
+
+#input {
+  display: none;
+}
+
+#submit {
+  display: none;
+}
