@@ -23,7 +23,7 @@ h1 {
 
 }
 
-#message, #displayTotal, #message2, #displayTotal2 {
+#message1, #displayPlayerTotal, #message2, #displayDealerTotal {
   color: black;
 }
 
@@ -35,11 +35,19 @@ h1 {
   display: none;
 }
 
-#playerCard, #dealerCard {
-  border: 1px solid black;
-  border-radius: 25px;
-  display: none;
-  height: 200px;
+#playerContainer, #dealerContainer {
+  height: 100px;
   padding: 10px;
-  width: 200px;
+  text-align: left;
+  width: 100%;
+}
+
+.player, .dealer {
+  border: 1px solid black;
+  display: inline-block;
+  height: 90px;
+  margin: 5px;
+  padding: 10px;
+  text-align: left;
+  width: 20%;
 }
