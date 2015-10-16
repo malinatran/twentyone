@@ -1,7 +1,7 @@
 // TWENTY ONE
 // Malina Tran
 // Oct 19, 2015
-// Objective: game of Blackjack with user playing against a dealer (computer). First to 21, or closest to 21 without going over, wins.
+// Objective: one-player game of Blackjack with user playing against a dealer (computer). First to 21, or closest to 21 without going over, wins.
 
 // * * * * * * * * * * * * * * * * * 
 // THE UNIVERSE  * * * * * * * * * * 
@@ -115,7 +115,7 @@ var startGame = function($bankroll, $bankrollmessage, $message1, $input, $submit
 // (3b) Check Ace in player's hand
 var checkPlayerAce = function($displayPlayerTotal) {
   for (var i = 0; i < playerHand.length; i++) {
-    if (playerHand[i][0].name === 'Ace') {
+    if (playerHand[i][0]['name'] === 'Ace') {
       // If sum of cards < 21, change value of Ace from 1 to 11
       if (playerTotal < 21 && playerTotal <= 10) { 
         playerTotal += 10;
@@ -140,13 +140,13 @@ var dealToPlayer = function($message1, $message2, $hit, $stay, $playerContainer,
   for (var i = 0; i < playerHand.length; i++) {
     // (a) Create div for each card in player's hand
     var $div = $('<div>').addClass('player');
-    $div.html(playerHand[i][0].name + ' ' + playerHand[i][0].suit);
+    $div.html(playerHand[i][0]['name'] + ' ' + playerHand[i][0]['suit']);
     $playerContainer.prepend($div);
     // (b) Sum up the value in player's hand
     playerTotal += parseInt(playerHand[i][0].value);
     $displayPlayerTotal.html(playerTotal);
     // (c) Check if there's an Ace
-    if (playerHand[i][0].name === "Ace") {
+    if (playerHand[i][0]['name'] === 'Ace') {
       checkPlayerAce($displayPlayerTotal);
     }
   }
@@ -155,7 +155,7 @@ var dealToPlayer = function($message1, $message2, $hit, $stay, $playerContainer,
 // (4b) Check Ace in dealer's hand
 var checkDealerAce = function($displayDealerTotal) {
   for (var i = 0; i < dealerHand.length; i++) {
-    if (dealerHand[i][0].name === 'Ace') {
+    if (dealerHand[i][0]['name'] === 'Ace') {
       // If sum of cards < 21, change value of Ace from 1 to 11
       if (dealerTotal < 21 && dealerTotal <= 10) {
         dealerTotal += 10;
@@ -179,21 +179,17 @@ var dealToDealer = function($message2, $dealerContainer, $displayDealerTotal) {
   for (var i = 0; i < dealerHand.length; i++) {
     // (a) Create div for each card in dealer's hand
     var $div = $('<div>').addClass('dealer');
-    $div.html(dealerHand[i][0].name + ' ' + dealerHand[i][0].suit);
+    $div.html(dealerHand[i][0]['name'] + ' ' + dealerHand[i][0]['suit']);
     $dealerContainer.prepend($div);
     // (b) Sum up the value in dealer's hand
     dealerTotal += parseInt(dealerHand[i][0].value);
     $displayDealerTotal.html(dealerTotal);
     // (c) Check if there's an Ace
-    if (dealerHand[i][0].name === "Ace") {
+    if (dealerHand[i][0]['name'] === 'Ace') {
       checkDealerAce($displayDealerTotal);
     }
   }
-  // Check if sum of dealer's hand is less than 17
-  if (dealerTotal <= 16) {
-    checkDealersHand($dealerContainer, $displayDealerTotal);
-  }
-  $displayDealerTotal.html(dealerTotal);
+
 };
 
 // (5) If player hits, receives card
@@ -201,25 +197,28 @@ var receiveCard = function($playerContainer, $displayPlayerTotal, $message1) {
   playerHand.unshift(getCard());
   checkPlayerAce($displayPlayerTotal);
   var $div = $('<div>').addClass('player');
-  $div.html(playerHand[0][0].name + ' ' + playerHand[0][0].suit);
-  $playerContainer.prepend($div);
+  $div.html(playerHand[0][0]['name'] + ' ' + playerHand[0][0]['suit']);
+  $playerContainer.append($div);
   playerTotal += parseInt(playerHand[0][0].value);
   $displayPlayerTotal.html(playerTotal);
-  determineWinner($message1);
 };
 
 // (6) If dealer's sum is less than 17, receives card
 var checkDealersHand = function($dealerContainer, $displayDealerTotal, $message1) {
-  while (dealerTotal < 17) {
+  if (dealerTotal <= 16) {
+    while (dealerTotal <= 16) {
     dealerHand.unshift(getCard());
     checkDealerAce($displayDealerTotal);
     var $div = $('<div>').addClass('dealer');
-    $div.html(dealerHand[0][0].name + ' ' + dealerHand[0][0].suit);
-    $dealerContainer.prepend($div);
+    $div.html(dealerHand[0][0]['name'] + ' ' + dealerHand[0][0]['suit']);
+    $dealerContainer.append($div);
     dealerTotal += parseInt(dealerHand[0][0].value);
     $displayDealerTotal.html(dealerTotal);
+    }
+    determineWinner($message1);
+  } else {
+    determineWinner($message1);
   }
-  determineWinner($message1);
 };
 
 // (7) Compare sums of player and dealer's hands
@@ -236,19 +235,35 @@ var determineWinner = function($message1) {
     $message1.html('Player busted, dealer wins');
   } else if (dealerTotal > 21 && playerTotal < 21) {
     $message1.html('Dealer busted, player wins');
-  } else if (playerTotal > 21 && dealerTotal > 21) {
-    $message1.html('Both lose');
+  } else if (playerTotal < 21 && dealerTotal < 21) {
+    if (dealerTotal > playerTotal) {
+      $message1.html('Dealer wins');
+    } else if (playerTotal > dealerTotal) {
+      $message1.html('Player wins');
+    } 
   }
-  // reveal dealer's 2nd card
 };
 
-// (8) Reset entire game
-var reset = function() {
-// clear html of $message1, $message2, displayPlayerTotal, displayDealerTotal
-// empty playerHand and dealerHand
-// set playerTotal, dealerTotal, and bankroll to 0
-// remove div.player and div.dealer
-// go to makeBet();
+// (8) Reset entire gam
+var resetGame = function($start, $reset, $hit, $stay, $message1, $message2, $input, $bankrollmessage, $displayPlayerTotal, $displayDealerTotal, $bankroll, $playerContainer, $dealerContainer) {
+  $start.show();
+  $reset.hide();
+  $hit.hide();
+  $stay.hide();
+  $message1.html('');
+  $message2.html('');
+  $input.val('');
+  $bankrollmessage.html('');
+  $displayPlayerTotal.html('');
+  $displayDealerTotal.html('');
+  playerHand = [];
+  dealerHand = [];
+  playerTotal = 0;
+  dealerTotal = 0;
+  $bankroll = 0;
+  $('.player').remove();
+  $('.dealer').remove();
+  makeBet();
 };
 
 // * * * * * * * * * * * * * * * * * 
@@ -281,16 +296,28 @@ $(function() {
   $(document).keypress(function(event) {
     if (event.keyCode == 13) {
       dealToPlayer($message1, $message2, $hit, $stay, $playerContainer, $displayPlayerTotal);
+      if (playerTotal === 21 || playerTotal > 21) {
+        determineWinner($message1);
+      } 
       dealToDealer($message2, $dealerContainer, $displayDealerTotal);
     }
   });
   
   $hit.click(function(event) {
     receiveCard($playerContainer, $displayPlayerTotal, $message1);
+    if (playerTotal === 21 || playerTotal > 21) {
+      determineWinner($message1);
+    } 
   });
 
   $stay.click(function(event) {
-    determineWinner($message1);
+    console.log("Hello");
+    checkDealersHand($dealerContainer, $displayDealerTotal, $message1);
+    determineWinner($message1); 
+  });
+
+  $reset.click(function(event) {
+    resetGame($start, $reset, $hit, $stay, $message1, $message2, $input, $bankrollmessage, $displayPlayerTotal, $displayDealerTotal, $bankroll, $playerContainer, $dealerContainer);
   });
 
 });
