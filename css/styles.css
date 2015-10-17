@@ -36,10 +36,11 @@ h1 {
 }
 
 #playerContainer, #dealerContainer {
-  display: block;
-  height: 100px;
+  border: 1px solid black;
+  display: inline-block;
+  height: 150px;
   margin: 10px;
-  padding: 10px;
+  padding-bottom: 10px;
   text-align: left;
   width: 100%;
 }
@@ -48,8 +49,9 @@ h1 {
   border: 1px solid black;
   display: inline-block;
   height: 90px;
+  left: 0;
   margin: 5px;
   padding: 10px;
-  text-align: left;
-  width: 20%;
+  top: 0;
+  width: 50px;
 }
