@@ -4,24 +4,39 @@
     <title></title>
     <link rel="stylesheet" href="css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Rouge+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="js/scripts.js"></script>
   </head>
   <body>
-    <h1></h1>
-    <button id="start">Start</button>
-    <button id="reset">Reset</button>
-    <button id="hit">Hit</button>
-    <button id="stay">Stay</button>
-    <p id="bankrollmessage"></p>
-    <p id="message1"></p>
-    <input id="input">
-    <button id="submit">Submit</button>
-    <p id="displayPlayerTotal"></p>
-    <div id="playerContainer"></div>
-    <p id="message2"></p>
-    <p id="displayDealerTotal"></p>
-    <div id="dealerContainer"></div>
-    <footer></footer>
+    <div id="header">
+        <h1>twentyone</h1>
+        <span id="title">MODERN TWIST ON A CLASSIC GAME</span>
+        <span id="start"><a href="#floating-logo">START &clubs;</a></span>
+    </div>
+    <div id="twentyone">
+        <span id="thegameof">WELCOME TO THE GAME OF</span>
+        <h3>twentyone<h3>
+    </div>
+    <span id="reset">RESET</span>
+    <span id="bankrollmessage"></span>
+    <div id="setup">
+        <p id="message1"></p>
+        <input type="number" class="number" id="input" value="$"/>
+        <div id="submit">SUBMIT</div>
+        <span id="hit">HIT</span>
+        <span id="or">OR</span>
+        <span id="stay">STAY</span>
+    </div>
+    <div id="main container">
+        <div id="playerContainer">
+            <p id="displayPlayerTotal"></p>
+        </div>
+        <div id="dealerContainer">
+            <p id="message2"></p>
+        </div>
+    </div>
+    <footer>MADE BY MALINA <span style="color:red;">&hearts;</span></footer>
   </body>
 </html>

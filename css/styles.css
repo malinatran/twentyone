@@ -1,57 +1,362 @@
+/* * * * * * * *
+   SPLASH PAGE
+ * * * * * * * */
+
+body {
+  background-image: linear-gradient(#48E0D2, #FFF);
+}
+
+#header {
+  text-align: center;
+}
+
+#title {
+  border-bottom: 2.5px solid #E5FF67;
+  border-top: 2.5px solid #E5FF67;
+  color: black;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.5em;
+  font-weight: 400;
+  letter-spacing: 1.75px;
+  margin: 13px auto 10px auto;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-align: center;
+}
+
 h1 {
-/*  font-family: 'Rouge Script', cursive;
-  font-size: 150px;*/
+  color: white;
+  font-family: 'Rouge Script', sans-serif;
+  font-size: 10em;
+  margin: 10px auto 20px auto;
+  padding: 10px;
+  text-align:center;
+  text-shadow: -1px -1px #D3D3D3;
 }
 
 #start {
-  
+  background-color: transparent;
+  border: 5px black;
+  color: white;
+  display: block;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1.25em;
+  font-weight: 400;
+  height: 25px;
+  margin: 125px auto 10px auto;
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+  width: 70px;
 }
 
-#reset {
-  display: none;
+#start a {
+  color: white;
+  text-decoration: none;
 }
 
-#hit {
-  display: none;
+#start:hover {
+  color: #FE5621;
 }
 
-#stay {
-  display: none;
+#start a:visited {
+  color: white;
 }
 
-#bankrollmessage {
+/* * * * * * * *
+      LOGO
+ * * * * * * * */
 
-}
-
-#message1, #displayPlayerTotal, #message2, #displayDealerTotal {
-  color: black;
-}
-
-#input {
-  display: none;
-}
-
-#submit {
-  display: none;
-}
-
-#playerContainer, #dealerContainer {
-  border: 1px solid black;
-  display: inline-block;
-  height: 150px;
-  margin: 10px;
-  padding-bottom: 10px;
-  text-align: left;
+#twentyone {
+  display: block;
+  margin-right: 20px;
+  margin-top: 200px;
+  text-align: right;
   width: 100%;
 }
 
-.player, .dealer {
+#thegameof {
+  border-bottom: 2.5px solid black;
+  border-top: 2.5px solid black;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 0.85em;
+  font-weight: 400;
+  display: inline-block;
+  letter-spacing: 1px;
+  margin: 10px 22px 0px auto;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+h3 {
+  display: block;
+  font-family: 'Rouge Script', cursive;
+  font-size: 5em;
+  margin: -15px 20px 0 auto;
+  padding-bottom: 10px;
+}
+
+#reset {
+  background-color: transparent;
+  border-top: 3px solid #FB6868;
+  color: black;
+  display: none;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1em;
+  font-weight: 700;
+  height: 25px;
+  letter-spacing: 1.5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-align: left;
+  vertical-align: middle;
+  width: 100px;
+}
+
+/* * * * * * * *
+     SETUP
+ * * * * * * * */
+
+#setup {
+  display: block;
+  margin-top: 50px;
+  text-align: center;
+  width: 100%;
+}
+
+#message1 {
+  color: black;
+  display: block;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 20px;
+  text-align: center;
+}
+
+#input {
+  background-color: transparent;
+  border: 5px solid white;
+  color: black;
+  display: none;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.75em;
+  font-weight: 400;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  width: 150px;
+  vertical-align: middle;
+}
+
+#submit {
+  background-color: transparent;
+  color: #21c386;
+  display: none;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1em;
+  font-weight: 700;
+  height: 25px;
+  margin: 10px auto;
+  padding: 5px;
+  vertical-align: middle;
+  width: 100px;
+}
+
+#hit {
+  background-color: transparent;
+  border-top: 3px solid #E5FF67;
+  color: black;
+  display: none;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1em;
+  font-weight: 700;
+  height: 25px;
+  letter-spacing: 1.5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+#or {
+  display: none;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1em;
+  font-weight: 700;
+  height: 25px;
+  letter-spacing: 1.5px;
+}
+
+#stay {
+  background-color: transparent;
+  border-top: 3px solid #E5FF67;
+  color: black;
+  display: none;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1em;
+  font-weight: 700;
+  height: 25px;
+  letter-spacing: 1.5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+#bankrollmessage {
+  border-top: 3px solid #21C386;
+  color: black;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1em;
+  font-weight: 700;
+  height: 25px;
+  letter-spacing: 1.5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 10px;
+}
+
+/* * * * * * * *
+   DECK SETUP
+ * * * * * * * */
+
+#displayPlayerTotal {
+  color: black;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1em;
+  font-weight: 700;
+  height: 25px;
+  margin-top: 10px;
+  letter-spacing: 1.5px;
+}
+
+#mainContainer {
   border: 1px solid black;
   display: inline-block;
-  height: 90px;
-  left: 0;
-  margin: 5px;
-  padding: 10px;
-  top: 0;
-  width: 50px;
+  height: 325px;
+  margin-top: 40px;
+  width: 100%;
+  text-align: center;
 }
+
+#playerContainer {
+  /*border: 1px solid black;*/
+  display: inline-block;
+  height: 300px;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  width: 45%;
+  vertical-align: middle;
+}
+
+#dealerContainer {
+  /*border: 1px solid black;*/
+  display: inline-block;
+  height: 300px;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  width: 45%;
+  vertical-align: middle;
+}
+
+#message2 {
+  color: black;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1em;
+  font-weight: 700;
+  margin-top: 10px;
+  height: 25px;
+  letter-spacing: 1.5px;
+}
+
+.player {
+  background-image: linear-gradient(#A34FB2 10%, transparent 9%);
+  border-color: black;
+  border-style: double;
+  border-width: 2px;
+  font-family: 'Arvo', serif;
+  font-size: 2em;
+  display: inline-block;
+  height: 100px;
+  margin: 5px;
+  padding-top: 15px;
+  text-align: center;
+  vertical-align: middle;
+  width: 70px;
+}
+
+.dealer {
+  background-image: linear-gradient(#448AFF 10%, transparent 9%);
+  border-color: black;
+  border-style: double;
+  border-width: 2px;
+  font-family: 'Arvo', serif;
+  font-size: 2em;
+  display: inline-block;
+  height: 100px;
+  margin: 5px;
+  padding-top: 15px;
+  text-align: center;
+  vertical-align: middle;
+  width: 70px;
+}
+
+/* * * * * * * *
+  MISCELLANEOUS
+ * * * * * * * */
+
+img {
+  height: 20px;
+  width: 38px;
+}
+
+footer {
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 0.85em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* * * * * * * *
+  MEDIA QUERIES
+ * * * * * * * */
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 120px;
+  }
+  #title {
+    font-size: 18px;
+    line-height: 3em;
+  }
+  #twentyone {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  #hit, #or, #stay {
+    margin-bottom: 10px;
+  }
+  #playerContainer {
+    display: block;
+    height: 30%;
+    margin-top: 10px;
+    text-align: center;
+  }
+  #dealerContainer {
+    display: block;
+    margin-top: 0px;
+    text-align: center;
+  }
+}
+
+
+
+
+
