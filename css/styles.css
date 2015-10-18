@@ -57,12 +57,12 @@ h1 {
   text-decoration: none;
 }
 
-#start:hover {
-  color: #FE5621;
-}
-
 #start a:visited {
   color: white;
+}
+
+#start a:hover {
+  color: #FB6868;
 }
 
 /* * * * * * * *
@@ -103,7 +103,7 @@ h3 {
 
 #reset {
   background-color: transparent;
-  border-top: 3px solid black;
+  border-top: 3px solid #A34FB2;
   color: black;
   display: none;
   font-family: 'Josefin Sans', sans-serif; 
@@ -116,6 +116,10 @@ h3 {
   padding-bottom: 10px;
   padding-top: 10px;
   width: 100px;
+}
+
+#reset:hover {
+  color: #A34FB2;
 }
 
 #bankrollmessage {
@@ -142,6 +146,24 @@ h3 {
   margin-left: 20px;
   margin-right: 20px;
   padding-top: 10px;
+}
+
+#play {
+  border-top: 3px solid #FF3D7F;
+  color: black;
+  display: none;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1em;
+  font-weight: 700;
+  height: 25px;
+  letter-spacing: 1.5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 10px;
+}
+
+#play:hover {
+  color: #FF3D7F;
 }
 
 /* * * * * * * *
@@ -201,7 +223,7 @@ h3 {
 
 #hit {
   background-color: transparent;
-  border-top: 3px solid #E5FF67;
+  border: 3px solid #E5FF67;
   color: black;
   display: none;
   font-family: 'Josefin Sans', sans-serif; 
@@ -211,8 +233,12 @@ h3 {
   letter-spacing: 1.5px;
   margin-left: 20px;
   margin-right: 20px;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding: 10px 10px 5px 10px;
+  width: 120px;
+}
+
+#hit:hover  {
+  background-color: #E5FF67;
 }
 
 #or {
@@ -226,7 +252,7 @@ h3 {
 
 #stay {
   background-color: transparent;
-  border-top: 3px solid #E5FF67;
+  border: 3px solid #E5FF67;
   color: black;
   display: none;
   font-family: 'Josefin Sans', sans-serif; 
@@ -236,8 +262,12 @@ h3 {
   letter-spacing: 1.5px;
   margin-left: 20px;
   margin-right: 20px;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding: 10px 10px 5px 10px;
+  width: 120px;
+}
+
+#stay:hover {
+  background-color: #E5FF67;
 }
 
 /* * * * * * * *
@@ -263,7 +293,6 @@ h3 {
 }
 
 #playerContainer {
-  /*border: 1px solid black;*/
   display: inline-block;
   height: 300px;
   margin: auto;
@@ -274,7 +303,6 @@ h3 {
 }
 
 #dealerContainer {
-  /*border: 1px solid black;*/
   display: inline-block;
   height: 300px;
   margin: auto;
@@ -295,7 +323,7 @@ h3 {
 }
 
 .player {
-  background-image: linear-gradient(#A34FB2 10%, transparent 9%);
+  background-image: linear-gradient(#FA6900 10%, transparent 9%);
   border-color: black;
   border-radius: 5px;
   border-style: double;
@@ -336,7 +364,7 @@ h3 {
 }
 
 /* * * * * * * *
-  MISCELLANEOUS
+   IMG + MISC
  * * * * * * * */
 
 #bow {
@@ -346,10 +374,15 @@ h3 {
 
 #dice {
   display: block;
-  height: 80px;
+  height: 78px;
   margin: 30px auto;
   width: 95px;
   text-align: center;
+}
+
+#poop {
+  height: 30px;
+  width: 30px;
 }
 
 #enter {
@@ -385,10 +418,21 @@ footer p a:visited {
 /* * * * * * * *
   MEDIA QUERIES
  * * * * * * * */
+@media (max-width: 590px) {
+  #navbar {
+    display: block;
+  }
+  #reset, #bankrollmessage, #bankrollmessage2, #play {
+    margin: 8px;
+  }
+}
 
 @media (max-width: 480px) {
   h1 {
     font-size: 120px;
+  }
+  h3 {
+    border-bottom: 50px;
   }
   #title {
     font-size: 16px;
@@ -402,13 +446,28 @@ footer p a:visited {
     display: block;
     text-align: center;
   }
-  #reset, #bankrollmessage {
+  #reset {
     border: none;
-    text-align: center;
+    margin-top: 5px;
+    padding: auto;
+  }
+  #bankrollmessage {
+    border: none;
+    margin-top: 5px;
+    padding: auto;
+    /*position: relative;*/
   }
   #bankrollmessage2 {
     border:none;
     display: block;
+    margin-top: 5px;
+    padding: auto;
+    text-align: center;
+  } 
+  #play {
+    border:none;
+    margin-top: 5px;
+    padding: auto;
     text-align: center;
   }
   #hit, #or, #stay {
@@ -426,7 +485,7 @@ footer p a:visited {
     text-align: center;
   }
   footer {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
 

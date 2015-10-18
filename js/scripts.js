@@ -84,18 +84,19 @@ var getCard = function() {
 // THE GAME  * * * * * * * * * * * *
 // * * * * * * * * * * * * * * * * * 
 
-// (1)  Wager bet and show relevant buttons - line 100
-// (2)  Post bet amount & official start of game - line 108
-// (3b) Check Ace in player's hand - line 117
-// (3a) Player is dealt cards - line 131
-// (4b) Check Ace in dealer's hand - line 158
-// (4a) Dealer is dealt cards - line 171
-// (5)  If player hits, receives card - line 196
-// (6)  If dealer's sum is less than 17, receives card - line 208
-// (7)  Compare sums of player and dealer's hands - line 226
-// (8)  If player wins – line 262
-// (9)  If dealer wins – line 269
-// (10)  Reset entire game – line 276
+// (1)  Wager bet and show relevant buttons - line 101
+// (2)  Post bet amount & official start of game - line 109
+// (3b) Check Ace in player's hand - line 119
+// (3a) Player is dealt cards - line 133
+// (4b) Check Ace in dealer's hand - line 161
+// (4a) Dealer is dealt cards - line 174
+// (5)  If player hits, receives card - line 198
+// (6)  If dealer's sum is less than 17, receives card - line 210
+// (7)  Compare sums of player and dealer's hands - line 229
+// (8)  If player wins – line 266
+// (9)  If dealer wins – line 275
+// (10) Player continues playing – line 284
+// (11) Reset entire game – line 308
 
 // (1) Wager bet and show relevant buttons
 var makeBet = function($message1, $start, $input, $reset, $submit) {
@@ -120,7 +121,7 @@ var checkPlayerAce = function($displayPlayerTotal) {
   for (var i = 0; i < playerHand.length; i++) {
     if (playerHand[i]['name'] === 'Ace') {
       if (playerTotal > 21) {
-        dealerHand[i].value = 1;
+        dealerHand[i]['value'] = 1;
         $displayPlayerTotal.html('YOUR CARDS: ' + playerTotal);
         playerTotal -= 10;
         return playerTotal;
@@ -132,7 +133,6 @@ var checkPlayerAce = function($displayPlayerTotal) {
 // (3a) Player is dealt cards
 var dealToPlayer = function($message1, $message2, $hit, $or, $stay, $playerContainer, $displayPlayerTotal) {
   pressEnter = false;
-  // $play.show();
   $message1.html('CHOOSE ONE:');
   $hit.show();
   $or.show();
@@ -162,7 +162,7 @@ var checkDealerAce = function() {
   for (var i = 0; i < dealerHand.length; i++) {
     if (dealerHand[i]['name'] === 'Ace') {
       if (dealerTotal > 21) {
-        dealerHand[i].value = 1;
+        dealerHand[i]['value'] = 1;
         dealerTotal -= 10;
         return dealerTotal;
       }
@@ -184,7 +184,7 @@ var dealToDealer = function($message2, $dealerContainer) {
     dealerTotal += parseInt(dealerHand[i].value);
   }
   // (c) Hide last card and add empty card
-  $('.dealer:last-child').hide();
+  $('.dealer:last-child').attr('id', 'hidden').hide();
   $div = $("<div id='mystery'>").addClass('dealer');
   $dealerContainer.append($div);
   // (d) Check if there's an Ace
@@ -232,21 +232,22 @@ var determineWinner = function($hit, $or, $stay, $message2, $message1, $amount, 
   $or.hide();
   $stay.hide();
   $message2.html('DEALER\'S CARDS: ' + dealerTotal);
-  $('.dealer:nth-child(3n)').show();
-  $('.dealer:nth-child(4n').hide();
+  $('#hidden').show();
+  $('#mystery').hide();
   if (playerTotal === 21 && dealerTotal === 21) {
     $message1.html('A VERY UNLIKELY TIE, BUT A TIE INDEED.');
   } else if (playerTotal === 21 && dealerTotal < 21) {
       $message1.html('VEGAS, HERE WE COME!');
       playerWins($amount, $bankrollmessage, $bankrollmessage2, $message2); 
   } else if (dealerTotal === 21 && playerTotal < 21) {
-      $message1.html('MAYBE IN THE NEXT ROUND. . .');
+      $message1.html('OH ');
+      $message1.append("<img id='poop' src='img/poop.png'>");
       dealerWins($amount, $bankrollmessage, $bankrollmessage2, $message2); 
   } else if (playerTotal !== 21 && dealerTotal !== 21 && playerTotal === dealerTotal) {
       $message1.html('A TIE, UNLESS YOU PREFER A BOW. ');
       $message1.append("<img id='bow' src='img/bow.png'>");   
   } else if (playerTotal > 21 && dealerTotal < 21) {
-      $message1.html('OOPS, YOU BUSTED.');
+      $message1.html('OOPS, YOU BUSTED!');
       dealerWins($amount, $bankrollmessage, $bankrollmessage2, $message2);  
   } else if (dealerTotal > 21 && playerTotal < 21) {
       $message1.html('. . . AND THE PRICE IS RIGHT!');
@@ -269,7 +270,6 @@ var playerWins = function($amount, $bankrollmessage, $bankrollmessage2, $message
   $bankrollmessage2.html('BANKROLL: $' + bankroll);
   $bankrollmessage.html('WAGER: +$' + $amount).css('color', '#21C386');
   $message2.html('DEALER\'S CARDS: ' + dealerTotal);
-  // $amount = 0;
 };
 
 // (9) If dealer wins
@@ -278,36 +278,38 @@ var dealerWins = function($amount, $bankrollmessage, $bankrollmessage2, $message
   $bankrollmessage2.html('BANKROLL: $' + bankroll);
   $bankrollmessage.html('WAGER: -$' + $amount).css('color', '#FB6868');
   $message2.html('DEALER\'S CARDS: ' + dealerTotal);
-  // $amount = 0;
 };
 
-// var playGame = function($reset, $play, $hit, $or, $stay, $message1, $message2, $input, $bankrollmessage, $displayPlayerTotal, $submit) {
-//   $reset.hide();
-//   $play.hide();
-//   $hit.hide();
-//   $or.hide();
-//   $stay.hide();
-//   $message1.html('');
-//   $message2.html('');
-//   $input.val('');
-//   $bankrollmessage.html('YOU HAVE ' + bankroll + '. PLEASE ENTER YOUR WAGER:');
-//   $displayPlayerTotal.html('');
-//   playerHand = [];
-//   dealerHand = [];
-//   playerTotal = 0;
-//   dealerTotal = 0;
-//   $('.player').remove();
-//   $('.dealer').remove();
-//   pressEnter = true;
-//   while (bankroll > 0) {
-//     makeBet($message1, $start, $input, $reset, $submit);
-//   }
-// };
+// (10) Continue playing game if there is $
+var playGame = function($start, $reset, $play, $hit, $or, $stay, $message1, $message2, $input, $amount, $bankrollmessage, $bankrollmessage2, $displayPlayerTotal, $submit) {
+  $start.hide();
+  $reset.hide();
+  $play.hide()
+  $hit.hide();
+  $or.hide();
+  $stay.hide();
+  $message1.html('');
+  $message2.html('');
+  $input.val('');
+  $amount = 0;
+  $bankrollmessage.html('').css('color', '');
+  $bankrollmessage2.hide();
+  $displayPlayerTotal.html('');
+  playerHand = [];
+  dealerHand = [];
+  playerTotal = 0;
+  dealerTotal = 0;
+  $('.player').remove();
+  $('.dealer').remove();
+  pressEnter = true;
+  makeBet($message1, $start, $input, $reset, $submit);
+};
 
-// (10) Reset entire game
-var resetGame = function($start, $reset, $hit, $or, $stay, $message1, $message2, $input, $amount, $bankrollmessage, $bankrollmessage2, $displayPlayerTotal, $submit) {
+// (11) Reset entire game
+var resetGame = function($start, $reset, $play, $hit, $or, $stay, $message1, $message2, $input, $amount, $bankrollmessage, $bankrollmessage2, $displayPlayerTotal, $submit) {
   $start.show();
   $reset.hide();
+  $play.hide();
   $hit.hide();
   $or.hide();
   $stay.hide();
@@ -349,7 +351,7 @@ $(function() {
     $input = $('#input');
     if ($amount > 1000) {
       alert('You cannot wager more than you have.')
-    } else if ($amount < 0) {
+    } else if ($amount < 0 || $amount === 0) {
       alert('You must wager more than that...')
     } else {
       startGame($bankrollmessage, $bankrollmessage2, $message1, $amount, $submit, $input);
@@ -366,7 +368,6 @@ $(function() {
     }
   });
 
-  // var $play = $('#play').hide();
   var $message2 = $('#message2');
   var $hit = $('#hit');
   var $or = $('#or');
@@ -374,9 +375,14 @@ $(function() {
   var $playerContainer = $('#playerContainer');
   var $dealerContainer = $('#dealerContainer');
   var $displayPlayerTotal = $('#displayPlayerTotal');
+  var $play = $('#play');
   $(document).keypress(function(event) {
+    $play.show();
     if (event.keyCode == 13 && pressEnter === true) {
       dealToPlayer($message1, $message2, $hit, $or, $stay, $playerContainer, $displayPlayerTotal);
+      if (playerTotal === 21 || playerTotal > 21) {
+        determineWinner($hit, $or, $stay, $message2, $message1, $amount, $bankrollmessage, $bankrollmessage2);
+      }
       dealToDealer($message2, $dealerContainer);
     } 
   });
@@ -391,10 +397,6 @@ $(function() {
     }
   });
   
-  // $hit.hover (function(event) {
-  //   $(this).css("border-top: 3px solid #E5FF67");
-  // });
-
   $hit.on('click', function(event) {
     receiveCard($playerContainer, $displayPlayerTotal);
     if (playerTotal === 21 || playerTotal > 21) {
@@ -402,24 +404,25 @@ $(function() {
     } 
   });
 
-  // $stand.hover (function(event) {
-  //   $(this).css("border-top: 3px solid #E5FF67");
-  // });
   $stay.on('click', function(event) {
-    if (playerTotal === 21 && playerTotal > 21) {
-     determineWinner($hit, $or, $stay, $message2, $message1, $amount, $bankrollmessage, $bankrollmessage2); 
+    if (playerTotal === 21 || playerTotal > 21) {
+      determineWinner($hit, $or, $stay, $message2, $message1, $amount, $bankrollmessage, $bankrollmessage2); 
+    } else if (playerTotal < 21) {
+      checkDealersHand($hit, $or, $stay, $message2, $dealerContainer, $message1, $amount, $bankrollmessage, $bankrollmessage2);
     }
-    checkDealersHand($hit, $or, $stay, $message2, $dealerContainer, $message1, $amount, $bankrollmessage, $bankrollmessage2);
-    // determineWinner($hit, $or, $stay, $message2, $message1, $amount, $bankrollmessage, $bankrollmessage2); 
-    // playGame($start, $reset, $hit, $or, $stay, $message1, $message2, $input, $bankrollmessage, $displayPlayerTotal, $submit);
   });
 
-  // $play.on('click', function(event) {
-  //   playGame($start, $reset, $play, $hit, $or, $stay, $message1, $message2, $input, $bankrollmessage, $displayPlayerTotal, $submit);
-  // })
+  $play.on('click', function(event) {
+    if (bankroll > 0 && bankroll !== 0) {
+      playGame($start, $reset, $play, $hit, $or, $stay, $message1, $message2, $input, $amount, $bankrollmessage, $bankrollmessage2, $displayPlayerTotal, $submit);
+    } else if (bankroll === 0) {
+      $play.prop('disabled', true);
+      alert('You have no more money in your bankroll. Reset game.');
+    }
+  });
 
   $reset.on('click', function(event) {
-    resetGame($start, $reset, $hit, $or, $stay, $message1, $message2, $input, $amount, $bankrollmessage, $bankrollmessage2, $displayPlayerTotal, $submit);
+    resetGame($start, $reset, $play, $hit, $or, $stay, $message1, $message2, $input, $amount, $bankrollmessage, $bankrollmessage2, $displayPlayerTotal, $submit);
   });
 
 });
