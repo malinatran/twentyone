@@ -43,11 +43,13 @@ h1 {
   font-size: 1.25em;
   font-weight: 400;
   height: 25px;
+  letter-spacing: 1.5px;
+  line-height: 0em;
   margin: 125px auto 10px auto;
   padding: 5px;
   text-align: center;
   vertical-align: middle;
-  width: 70px;
+  width: 300px;
 }
 
 #start a {
@@ -278,6 +280,7 @@ h3 {
 .player {
   background-image: linear-gradient(#A34FB2 10%, transparent 9%);
   border-color: black;
+  border-radius: 5px;
   border-style: double;
   border-width: 2px;
   font-family: 'Arvo', serif;
@@ -294,6 +297,7 @@ h3 {
 .dealer {
   background-image: linear-gradient(#448AFF 10%, transparent 9%);
   border-color: black;
+  border-radius: 5px;
   border-style: double;
   border-width: 2px;
   font-family: 'Arvo', serif;
@@ -307,13 +311,36 @@ h3 {
   width: 70px;
 }
 
+#mystery {
+  background-color: #448AFF;
+  background: linear-gradient(#448AFF 50%, transparent 50%);
+  background-size: 100% 20%;
+  background-repeat: repeat-y;
+}
+
 /* * * * * * * *
   MISCELLANEOUS
  * * * * * * * */
 
-img {
+#bow {
   height: 20px;
   width: 38px;
+}
+
+#dice {
+  display: block;
+  height: 80px;
+  margin: 30px auto;
+  width: 95px;
+  text-align: center;
+}
+
+#enter {
+  color: gray;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 0.75em;
+  font-weight: 700;
+  letter-spacing: 1.5px;
 }
 
 footer {
@@ -323,6 +350,20 @@ footer {
   letter-spacing: 1px;
   text-align: center;
 }
+
+footer p {
+  color: black;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 0.25em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+footer p a:visited {
+  color: black;
+}
+
 
 /* * * * * * * *
   MEDIA QUERIES
