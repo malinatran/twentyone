@@ -71,7 +71,7 @@ h1 {
 
 #twentyone {
   display: block;
-  margin: 200px 20px 50px auto;
+  margin: 400px 20px 50px auto;
   text-align: right;
   width: 100%;
 }
@@ -255,9 +255,8 @@ h3 {
 }
 
 #mainContainer {
-  border: 1px solid black;
   display: inline-block;
-  height: 325px;
+  height: 100%;
   margin-top: 40px;
   width: 100%;
   text-align: center;
@@ -392,7 +391,7 @@ footer p a:visited {
     font-size: 120px;
   }
   #title {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 3em;
   }
   #twentyone {
@@ -418,20 +417,16 @@ footer p a:visited {
   #playerContainer {
     display: block;
     height: 30%;
-    margin-top: 10px;
+    margin: 10px auto;
     text-align: center;
   }
   #dealerContainer {
     display: block;
-    margin-top: 0px;
+    margin: 10px auto;
     text-align: center;
   }
   footer {
     margin-top: 20px;
   }
 }
-
-
-
-
 

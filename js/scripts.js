@@ -109,7 +109,7 @@ var makeBet = function($message1, $start, $input, $reset, $submit) {
 // (2) Post bet amount & official start of game
 var startGame = function($bankrollmessage, $bankrollmessage2, $message1, $amount, $submit, $input) {
   $bankrollmessage.html('WAGER: $' + $amount);
-  $bankrollmessage2.html('BANKROLL: $' + bankroll);
+  $bankrollmessage2.show().html('BANKROLL: $' + bankroll);
   $message1.html('I\'M FEELING LUCKY.').append("<img id='dice' src='img/dice.png'>").append('<div id="enter">(PRESS ENTER)</div>');
   $input.hide();
   $submit.hide();
@@ -264,9 +264,10 @@ var determineWinner = function($hit, $or, $stay, $message2, $message1, $amount, 
 
 // (8) If player wins
 var playerWins = function($amount, $bankrollmessage, $bankrollmessage2, $message2) {
+  $amount = $amount + $amount;
   bankroll = bankroll + $amount;
   $bankrollmessage2.html('BANKROLL: $' + bankroll);
-  $bankrollmessage.html('WAGER: +$' + $amount).css("color", "#21C386");
+  $bankrollmessage.html('WAGER: +$' + $amount).css('color', '#21C386');
   $message2.html('DEALER\'S CARDS: ' + dealerTotal);
   // $amount = 0;
 };
@@ -275,7 +276,7 @@ var playerWins = function($amount, $bankrollmessage, $bankrollmessage2, $message
 var dealerWins = function($amount, $bankrollmessage, $bankrollmessage2, $message2) {
   bankroll = bankroll - $amount;
   $bankrollmessage2.html('BANKROLL: $' + bankroll);
-  $bankrollmessage.html('WAGER: -$' + $amount).css("color", "#FB6868");
+  $bankrollmessage.html('WAGER: -$' + $amount).css('color', '#FB6868');
   $message2.html('DEALER\'S CARDS: ' + dealerTotal);
   // $amount = 0;
 };
@@ -315,7 +316,7 @@ var resetGame = function($start, $reset, $hit, $or, $stay, $message1, $message2,
   $input.val('');
   $amount = 0;
   bankroll = 1000;
-  $bankrollmessage.html('');
+  $bankrollmessage.html('').css('color', '');
   $bankrollmessage2.hide();
   $displayPlayerTotal.html('');
   playerHand = [];
@@ -351,7 +352,7 @@ $(function() {
     } else if ($amount < 0) {
       alert('You must wager more than that...')
     } else {
-      startGame($bankrollmessage, $message1, $amount, $submit, $input);
+      startGame($bankrollmessage, $bankrollmessage2, $message1, $amount, $submit, $input);
     }
   });
 
@@ -405,8 +406,11 @@ $(function() {
   //   $(this).css("border-top: 3px solid #E5FF67");
   // });
   $stay.on('click', function(event) {
+    if (playerTotal === 21 && playerTotal > 21) {
+     determineWinner($hit, $or, $stay, $message2, $message1, $amount, $bankrollmessage, $bankrollmessage2); 
+    }
     checkDealersHand($hit, $or, $stay, $message2, $dealerContainer, $message1, $amount, $bankrollmessage, $bankrollmessage2);
-    determineWinner($hit, $or, $stay, $message2, $message1, $amount, $bankrollmessage, $bankrollmessage2); 
+    // determineWinner($hit, $or, $stay, $message2, $message1, $amount, $bankrollmessage, $bankrollmessage2); 
     // playGame($start, $reset, $hit, $or, $stay, $message1, $message2, $input, $bankrollmessage, $displayPlayerTotal, $submit);
   });
 
