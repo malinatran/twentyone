@@ -66,13 +66,12 @@ h1 {
 }
 
 /* * * * * * * *
-      LOGO
+  LOGO + NAVBAR
  * * * * * * * */
 
 #twentyone {
   display: block;
-  margin-right: 20px;
-  margin-top: 200px;
+  margin: 200px 20px 50px auto;
   text-align: right;
   width: 100%;
 }
@@ -98,9 +97,13 @@ h3 {
   padding-bottom: 10px;
 }
 
+#navbar {
+  text-align: left;
+}
+
 #reset {
   background-color: transparent;
-  border-top: 3px solid #FB6868;
+  border-top: 3px solid black;
   color: black;
   display: none;
   font-family: 'Josefin Sans', sans-serif; 
@@ -112,9 +115,33 @@ h3 {
   margin-right: 20px;
   padding-bottom: 10px;
   padding-top: 10px;
-  text-align: left;
-  vertical-align: middle;
   width: 100px;
+}
+
+#bankrollmessage {
+  border-top: 3px solid black;
+  color: black;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1em;
+  font-weight: 700;
+  height: 25px;
+  letter-spacing: 1.5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 10px;
+}
+
+#bankrollmessage2 {
+  border-top: 3px solid black;
+  color: black;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1em;
+  font-weight: 700;
+  height: 25px;
+  letter-spacing: 1.5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 10px;
 }
 
 /* * * * * * * *
@@ -168,6 +195,10 @@ h3 {
   width: 100px;
 }
 
+#play {
+  display: none;
+}
+
 #hit {
   background-color: transparent;
   border-top: 3px solid #E5FF67;
@@ -206,19 +237,6 @@ h3 {
   margin-left: 20px;
   margin-right: 20px;
   padding-bottom: 10px;
-  padding-top: 10px;
-}
-
-#bankrollmessage {
-  border-top: 3px solid #21C386;
-  color: black;
-  font-family: 'Josefin Sans', sans-serif; 
-  font-size: 1em;
-  font-weight: 700;
-  height: 25px;
-  letter-spacing: 1.5px;
-  margin-left: 20px;
-  margin-right: 20px;
   padding-top: 10px;
 }
 
@@ -381,6 +399,19 @@ footer p a:visited {
     text-align: center;
     margin-bottom: 20px;
   }
+  #navbar {
+    display: block;
+    text-align: center;
+  }
+  #reset, #bankrollmessage {
+    border: none;
+    text-align: center;
+  }
+  #bankrollmessage2 {
+    border:none;
+    display: block;
+    text-align: center;
+  }
   #hit, #or, #stay {
     margin-bottom: 10px;
   }
@@ -394,6 +425,9 @@ footer p a:visited {
     display: block;
     margin-top: 0px;
     text-align: center;
+  }
+  footer {
+    margin-top: 20px;
   }
 }
 
