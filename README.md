@@ -29,5 +29,6 @@ Pseudocode logic > code > refactor > design
 * Debugging and tracing through code to identify source of error
 
 ##Future Improvements##
-* Refactoring to shorten source code
-* Implementing more advanced features of the game
+* Refactoring to shorten and streamline source code and particular functions
+* Implementing more advanced features of the game (i.e. double down, insurance, split)
+* Incorporating multiple players and live players ('twentyone with friends' has a nice ring to it!)
