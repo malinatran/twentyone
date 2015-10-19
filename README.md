@@ -3,8 +3,7 @@
 [Game] (http://21bymalina.bitballoon.com/)  :rocket:  [Public Repo] (https://github.com/malinatran/twentyone)
 
 ###Objective###
-Create a fully functional game of Blackjack, which I aptly refer to as 'twentyone', using a working knowledge of HTML, CSS, JavaScript, and jQuery.
-This is a one-player game of with user playing against a dealer (computer). The user has the option of continuing the game in multiple rounds or resetting the game after a loss. First to 21, or closest to 21 without going over, wins.
+Create a fully functional game of Blackjack, which I aptly refer to as 'twentyone', using a working knowledge of HTML, CSS, JavaScript, and jQuery. This is a one-player game with the user playing against a dealer (computer). The user has the option of continuing the game in multiple rounds or resetting the game after a loss. First to 21, or closest to 21 without going over, wins.
 
 ###Approach####
 Pseudocode logic > code > refactor > design
