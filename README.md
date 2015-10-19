@@ -1,6 +1,6 @@
 #twentyone#
 
-[Game] (malinatran.github.io)  :rocket:  [Public Repo] (github.com/malinatran/malinatran.github.io)
+:rocket:  [Public Repo] (https://github.com/malinatran/twentyone)
 
 ###Objective###
 Create a fully functional game of Blackjack, which I aptly refer to as 'twentyone', using a working knowledge of HTML, CSS, JavaScript, and jQuery.
