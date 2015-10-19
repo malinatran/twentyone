@@ -398,6 +398,7 @@ footer {
   font-size: 0.85em;
   font-weight: 400;
   letter-spacing: 1px;
+  margin-top: 30px;
   text-align: center;
 }
 
@@ -483,9 +484,6 @@ footer p a:visited {
     display: block;
     margin: 10px auto;
     text-align: center;
-  }
-  footer {
-    margin-top: 10px;
   }
 }
 

@@ -236,10 +236,10 @@ var determineWinner = function($hit, $or, $stay, $message2, $message1, $amount, 
   $('#mystery').hide();
   if (playerTotal === 21 && dealerTotal === 21) {
     $message1.html('A VERY UNLIKELY TIE, BUT A TIE INDEED.');
-  } else if (playerTotal === 21 && dealerTotal < 21) {
+  } else if (playerTotal === 21) {
       $message1.html('VEGAS, HERE WE COME!');
       playerWins($amount, $bankrollmessage, $bankrollmessage2, $message2); 
-  } else if (dealerTotal === 21 && playerTotal < 21) {
+  } else if (dealerTotal === 21) {
       $message1.html('OH ');
       $message1.append("<img id='poop' src='img/poop.png'>");
       dealerWins($amount, $bankrollmessage, $bankrollmessage2, $message2); 
@@ -348,7 +348,7 @@ $(function() {
   var $bankrollmessage = $('#bankrollmessage');
   $submit.on('click', function(event) {
     $amount = parseInt($('#input').val());
-    $input = $('#input');
+    // $input = $('#input');
     if ($amount > 1000) {
       alert('You cannot wager more than you have.')
     } else if ($amount < 0 || $amount === 0) {
@@ -364,7 +364,13 @@ $(function() {
     if (event.keyCode == 13 && pressEnter === true) {
       $amount = parseInt($('#input').val());
       $input = $('#input');
-      startGame($bankrollmessage, $bankrollmessage2, $message1, $amount, $submit, $input);
+      if ($amount > 1000) {
+        alert('You cannot wager more than you have.')
+      } else if ($amount < 0 || $amount === 0) {
+        alert('You must wager more than that...')
+      } else {
+        startGame($bankrollmessage, $bankrollmessage2, $message1, $amount, $submit, $input);
+      }
     }
   });
 
