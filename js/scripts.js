@@ -1,4 +1,4 @@
-// TWENTY ONE
+// TWENTYONE
 // Malina Tran
 // Oct 19, 2015
 // Objective: one-player game of Blackjack with user playing against a dealer (computer). First to 21, or closest to 21 without going over, wins.
@@ -84,19 +84,19 @@ var getCard = function() {
 // THE GAME  * * * * * * * * * * * *
 // * * * * * * * * * * * * * * * * * 
 
-// (1)  Wager bet and show relevant buttons - line 101
-// (2)  Post bet amount & official start of game - line 109
-// (3b) Check Ace in player's hand - line 119
-// (3a) Player is dealt cards - line 133
+// (1)  Wager bet and show relevant buttons - line 102
+// (2)  Post bet amount & official start of game - line 111
+// (3b) Check Ace in player's hand - line 120
+// (3a) Player is dealt cards - line 134
 // (4b) Check Ace in dealer's hand - line 161
 // (4a) Dealer is dealt cards - line 174
-// (5)  If player hits, receives card - line 198
-// (6)  If dealer's sum is less than 17, receives card - line 210
-// (7)  Compare sums of player and dealer's hands - line 229
-// (8)  If player wins – line 266
+// (5)  If player hits, receives card - line 199
+// (6)  If dealer's sum is less than 17, receives card - line 211
+// (7)  Compare sums of player and dealer's hands - line 230
+// (8)  If player wins – line 267
 // (9)  If dealer wins – line 275
 // (10) Player continues playing – line 284
-// (11) Reset entire game – line 308
+// (11) Reset entire game – line 309
 
 // (1) Wager bet and show relevant buttons
 var makeBet = function($message1, $start, $input, $reset, $submit) {
