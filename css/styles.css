@@ -63,6 +63,13 @@ h1 {
 
 #start a:hover {
   color: #FB6868;
+  text-shadow: 10px 10px 50px #E5FF67,
+  -10px -10px 50px #E5FF67;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10000;
 }
 
 /* * * * * * * *
@@ -111,8 +118,9 @@ h3 {
   font-weight: 700;
   height: 25px;
   letter-spacing: 1.5px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 10px 20px 50px;
+ /* margin-left: 20px;
+  margin-right: 20px;*/
   padding-bottom: 10px;
   padding-top: 10px;
   width: 100px;
@@ -130,8 +138,9 @@ h3 {
   font-weight: 700;
   height: 25px;
   letter-spacing: 1.5px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 10px 20px 50px;
+/*  margin-left: 20px;
+  margin-right: 20px;*/
   padding-top: 10px;
 }
 
@@ -143,8 +152,9 @@ h3 {
   font-weight: 700;
   height: 25px;
   letter-spacing: 1.5px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 10px 20px 50px;
+/*  margin-left: 20px;
+  margin-right: 20px;*/
   padding-top: 10px;
 }
 
@@ -157,6 +167,7 @@ h3 {
   font-weight: 700;
   height: 25px;
   letter-spacing: 1.5px;
+  /*margin: 10px 20px 50px;*/
   margin-left: 20px;
   margin-right: 20px;
   padding-top: 10px;
@@ -449,25 +460,35 @@ footer p a:visited {
   }
   #reset {
     border: none;
-    margin-top: 5px;
+    font-size: 14px;
+    height: 10px;
+    /*display: block;*/
+    margin: 5px;
     padding: auto;
   }
   #bankrollmessage {
     border: none;
-    margin-top: 5px;
+    display: block;
+    font-size: 14px;
+    height: 10px;
+    margin: 5px;
     padding: auto;
     /*position: relative;*/
   }
   #bankrollmessage2 {
     border:none;
     display: block;
-    margin-top: 5px;
+    font-size: 14px;
+    height: 10px;
+    margin: 9px 5px 14px 5px;
     padding: auto;
     text-align: center;
   } 
   #play {
     border:none;
-    margin-top: 5px;
+    font-size: 14px;
+    height: 10px;
+    margin: 10px;
     padding: auto;
     text-align: center;
   }

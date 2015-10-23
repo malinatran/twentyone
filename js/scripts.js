@@ -111,7 +111,7 @@ var makeBet = function($message1, $start, $input, $reset, $submit) {
 var startGame = function($bankrollmessage, $bankrollmessage2, $message1, $amount, $submit, $input) {
   $bankrollmessage.html('WAGER: $' + $amount);
   $bankrollmessage2.show().html('BANKROLL: $' + bankroll);
-  $message1.html('I\'M FEELING LUCKY.').append("<img id='dice' src='img/dice.png'>").append('<div id="enter">(PRESS ENTER)</div>');
+  $message1.html('I\'M FEELING LUCKY.').append("<img id='dice' src='img/dice.png' alt='dice'/>").append('<div id="enter">(PRESS ENTER)</div>');
   $input.hide();
   $submit.hide();
 };
@@ -241,11 +241,11 @@ var determineWinner = function($hit, $or, $stay, $message2, $message1, $amount, 
       playerWins($amount, $bankrollmessage, $bankrollmessage2, $message2); 
   } else if (dealerTotal === 21) {
       $message1.html('OH ');
-      $message1.append("<img id='poop' src='img/poop.png'>");
+      $message1.append("<img id='poop' src='img/poop.png' alt='poop' />");
       dealerWins($amount, $bankrollmessage, $bankrollmessage2, $message2); 
   } else if (playerTotal !== 21 && dealerTotal !== 21 && playerTotal === dealerTotal) {
       $message1.html('A TIE, UNLESS YOU PREFER A BOW. ');
-      $message1.append("<img id='bow' src='img/bow.png'>");   
+      $message1.append("<img id='bow' src='img/bow.png' alt='bow' />");   
   } else if (playerTotal > 21 && dealerTotal < 21) {
       $message1.html('OOPS, YOU BUSTED!');
       dealerWins($amount, $bankrollmessage, $bankrollmessage2, $message2);  
@@ -284,7 +284,7 @@ var dealerWins = function($amount, $bankrollmessage, $bankrollmessage2, $message
 var playGame = function($start, $reset, $play, $hit, $or, $stay, $message1, $message2, $input, $amount, $bankrollmessage, $bankrollmessage2, $displayPlayerTotal, $submit) {
   $start.hide();
   $reset.hide();
-  $play.hide()
+  $play.hide();
   $hit.hide();
   $or.hide();
   $stay.hide();
@@ -364,7 +364,7 @@ $(function() {
     if (event.keyCode == 13 && pressEnter === true) {
       $amount = parseInt($('#input').val());
       $input = $('#input');
-      if ($amount > 1000) {
+      if ($amount > bankroll) {
         alert('You cannot wager more than you have.')
       } else if ($amount < 0 || $amount === 0) {
         alert('You must wager more than that...')
@@ -383,7 +383,7 @@ $(function() {
   var $displayPlayerTotal = $('#displayPlayerTotal');
   var $play = $('#play');
   $(document).keypress(function(event) {
-    $play.show();
+    $play.show().css('display','inline');
     if (event.keyCode == 13 && pressEnter === true) {
       dealToPlayer($message1, $message2, $hit, $or, $stay, $playerContainer, $displayPlayerTotal);
       if (playerTotal === 21 || playerTotal > 21) {
